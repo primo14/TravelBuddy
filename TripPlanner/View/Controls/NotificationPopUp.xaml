@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<toolkit:Popup
+    x:Class="TripPlanner.View.Controls.NotificationPopUp"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:model="clr-namespace:TripPlanner.Model"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    CanBeDismissedByTappingOutsideOfPopup="True"
+    HorizontalOptions="End"
+    Size="250,700"
+    VerticalOptions="Start">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20,50,10,0" BackgroundColor="{DynamicResource Primary}">
+            <Label FontSize="30" Text="Notifications" />
+            <CollectionView
+                x:Name="NotificationList"
+                Margin="10,30,0,0"
+                EmptyView="No Notifications Yet!">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="model:Notification">
+                        <SwipeView x:Name="swipeObj">
+                            <SwipeView.LeftItems>
+                                <SwipeItems Mode="Reveal">
+                                    <SwipeItemView CommandParameter="{Binding .}" Invoked="SwipeItemView_Invoked">
+                                        <Frame
+                                            Margin="0"
+                                            Padding="0"
+                                            BackgroundColor="{DynamicResource OffBlack}"
+                                            CornerRadius="10"
+                                            WidthRequest="60">
+                                            <Label
+                                                x:Name="View Term"
+                                                FontAttributes="Bold"
+                                                HorizontalOptions="Center"
+                                                Text="Delete"
+                                                TextColor="Red"
+                                                VerticalOptions="Center" />
+                                        </Frame>
+                                    </SwipeItemView>
+                                </SwipeItems>
+
+                            </SwipeView.LeftItems>
+
+                            <Frame
+                                Margin="0,0,0,20"
+                                Padding="15"
+                                BackgroundColor="{DynamicResource Tertiary}"
+                                CornerRadius="10">
+                                <VerticalStackLayout>
+                                    <Label
+                                        Margin="0,0,0,5"
+                                        FontSize="17"
+                                        Text="{Binding Title}" />
+
+                                    <Label Text="{Binding Description}" />
+                                </VerticalStackLayout>
+                            </Frame>
+                        </SwipeView>
+
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </VerticalStackLayout>
+    </ScrollView>
+</toolkit:Popup>

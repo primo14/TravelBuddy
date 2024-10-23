@@ -1,0 +1,125 @@
+<toolkit:Popup
+    x:Class="TripPlanner.View.Controls.ReportPopup"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:model="clr-namespace:TripPlanner.Model"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    Size="300,500"
+    Color="Transparent">
+    <Frame
+        Padding="20,20,20,0"
+        BackgroundColor="{DynamicResource Primary}"
+        CornerRadius="20">
+        <VerticalStackLayout>
+            <Label
+                Margin="0,10,10,10"
+                FontSize="20"
+                Text="Yearly Trips Report" />
+            <HorizontalStackLayout Margin="10,0">
+                <Entry
+                    x:Name="SearchTripYear"
+                    HorizontalOptions="Start"
+                    Placeholder="Enter a Valid Year"
+                    TextChanged="SearchTripYear_TextChanged"
+                    VerticalOptions="Start"
+                    WidthRequest="220" />
+                <Image
+                    HeightRequest="20"
+                    Source="search_icon.png"
+                    WidthRequest="20" />
+            </HorizontalStackLayout>
+            <Label Margin="10" Text="Trips Report Results:" />
+
+            <VerticalStackLayout Margin="15,0">
+                <HorizontalStackLayout Margin="10" Spacing="20">
+                    <Label
+                        x:Name="TripsLabel"
+                        Text=" "
+                        TextColor="{DynamicResource Magenta}" />
+                    <Label
+                        x:Name="TripNumber"
+                        Text=""
+                        TextColor="{DynamicResource SecondaryDarkText}" />
+                </HorizontalStackLayout>
+
+                <HorizontalStackLayout Margin="8" Spacing="17">
+                    <Label Margin="0,0,3,0" Text="Trip Name" />
+                    <Label Text="Start Date" />
+                    <Label Text="End Date" />
+                </HorizontalStackLayout>
+                <CollectionView
+                    x:Name="SearchList"
+                    BackgroundColor="Transparent"
+                    EmptyView="No Trips for Selected Year!"
+                    HeightRequest="180"
+                    ItemsSource="{Binding Trips}"
+                    SelectionMode="Single"
+                    VerticalOptions="StartAndExpand"
+                    VerticalScrollBarVisibility="Always"
+                    WidthRequest="230">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="model:Trip">
+
+                            <HorizontalStackLayout Margin="10,0,0,0">
+                                <Label
+                                    FontSize="11"
+                                    LineBreakMode="WordWrap"
+                                    Text="{Binding Title}"
+                                    TextColor="{DynamicResource SecondaryDarkText}"
+                                    VerticalOptions="Center"
+                                    WidthRequest="75" />
+
+                                <DatePicker
+                                    Margin="0"
+                                    Date="{Binding StartDate}"
+                                    FontSize="11"
+                                    IsEnabled="False"
+                                    TextColor="{DynamicResource SecondaryDarkText}"
+                                    VerticalOptions="Start"
+                                    WidthRequest="60" />
+
+                                <DatePicker
+                                    Margin="15,0,0,0"
+                                    Date="{Binding EndDate}"
+                                    FontSize="11"
+                                    IsEnabled="False"
+                                    TextColor="{DynamicResource SecondaryDarkText}"
+                                    VerticalOptions="Start" />
+
+                            </HorizontalStackLayout>
+
+
+
+
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </VerticalStackLayout>
+            <HorizontalStackLayout Margin="10" HorizontalOptions="End">
+                <Label
+                    FontSize="10"
+                    Text="As of: "
+                    TextColor="{DynamicResource Gray400}" />
+                <Label
+                    x:Name="ReportTimeStamp"
+                    FontSize="10"
+                    TextColor="{DynamicResource Gray400}" />
+            </HorizontalStackLayout>
+
+            <Label
+                Margin="0,20,0,0"
+                FontSize="20"
+                HorizontalOptions="Center"
+                Text="Close"
+                TextColor="{DynamicResource Gray200}"
+                VerticalOptions="End">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="ClosePopup" />
+                </Label.GestureRecognizers>
+            </Label>
+        </VerticalStackLayout>
+    </Frame>
+
+
+
+</toolkit:Popup>

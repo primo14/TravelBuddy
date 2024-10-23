@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="TripPlanner.View.Dashboard"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:model="clr-namespace:TripPlanner.Model"
+    xmlns:viewmodel="clr-namespace:TripPlanner.ViewModel"
+    x:DataType="viewmodel:DashboardViewModel">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Command="{Binding GetReportCommand}" IsEnabled="True">
+            <ToolbarItem.IconImageSource>
+                <FileImageSource File="report_icon.png" />
+            </ToolbarItem.IconImageSource>
+        </ToolbarItem>
+        <ToolbarItem Command="{Binding SearchTripCommand}" IsEnabled="True">
+            <ToolbarItem.IconImageSource>
+                <FileImageSource File="search_icon.png" />
+            </ToolbarItem.IconImageSource>
+        </ToolbarItem>
+        <ToolbarItem Command="{Binding DisplayNotificationsCommand}" IconImageSource="{Binding NotifSource}" />
+    </ContentPage.ToolbarItems>
+    <Grid Padding="10">
+        <RefreshView
+            x:Name="refreshView"
+            Command="{Binding GetTripsCommand}"
+            IsRefreshing="{Binding IsRefreshing}">
+            <ScrollView>
+                <VerticalStackLayout
+                    Margin="0,40,0,0"
+                    Padding="30,0"
+                    Spacing="25">
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="35"
+                        HorizontalOptions="Center"
+                        Text="Trips" />
+
+                    <Line
+                        Aspect="Fill"
+                        BackgroundColor="AntiqueWhite"
+                        Fill="AntiqueWhite"
+                        HorizontalOptions="Center" />
+
+                    <CollectionView
+                        x:Name="TermList"
+                        EmptyView="No Trips Yet!"
+                        ItemsSource="{Binding Trips}">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate x:DataType="model:Trip">
+                                <SwipeView x:Name="swipeObj">
+                                    <SwipeView.LeftItems>
+                                        <SwipeItems Mode="Reveal">
+                                            <SwipeItemView Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:DashboardViewModel}}, Path=DeleteTripCommand}" CommandParameter="{Binding .}">
+                                                <Frame
+                                                    Margin="0"
+                                                    Padding="0"
+                                                    BackgroundColor="{DynamicResource OffBlack}"
+                                                    CornerRadius="30"
+                                                    WidthRequest="100">
+                                                    <Label
+                                                        x:Name="View Term"
+                                                        FontAttributes="Bold"
+                                                        FontSize="15"
+                                                        HorizontalOptions="Center"
+                                                        Text="Delete"
+                                                        TextColor="Red"
+                                                        VerticalOptions="Center" />
+                                                </Frame>
+                                            </SwipeItemView>
+                                        </SwipeItems>
+
+                                    </SwipeView.LeftItems>
+                                    <SwipeView.RightItems>
+                                        <SwipeItems Mode="Reveal">
+
+                                            <SwipeItemView Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:DashboardViewModel}}, Path=GoToTripDetailsCommand}" CommandParameter="{Binding .}">
+                                                <Frame
+                                                    Margin="0"
+                                                    Padding="0"
+                                                    BackgroundColor="{DynamicResource PrimaryDark}"
+                                                    CornerRadius="30"
+                                                    WidthRequest="100">
+                                                    <Label
+                                                        FontAttributes="Bold"
+                                                        FontSize="15"
+                                                        HorizontalOptions="Center"
+                                                        Text="View/Edit"
+                                                        TextColor="{DynamicResource SecondaryDarkText}"
+                                                        VerticalOptions="Center" />
+                                                </Frame>
+
+                                            </SwipeItemView>
+
+                                        </SwipeItems>
+                                    </SwipeView.RightItems>
+
+
+                                    <Frame
+                                        Margin="0,0,0,20"
+                                        Padding="15"
+                                        BackgroundColor="{DynamicResource PrimaryDarkText}"
+                                        CornerRadius="20">
+                                        <Frame.Shadow>
+                                            <Shadow
+                                                Brush="Black"
+                                                Opacity="0.75"
+                                                Radius="20"
+                                                Offset="-30,10" />
+                                        </Frame.Shadow>
+                                        <HorizontalStackLayout>
+                                            <Label
+                                                Margin="10"
+                                                FontSize="20"
+                                                LineBreakMode="WordWrap"
+                                                MaximumWidthRequest="130 "
+                                                Text="{Binding Title, Mode=TwoWay}"
+                                                TextColor="{DynamicResource Magenta}"
+                                                VerticalOptions="Center"
+                                                WidthRequest="100" />
+
+                                            <VerticalStackLayout
+                                                x:Name="Date Row"
+                                                Margin="20,0,0,0"
+                                                Padding="0,0,0,10"
+                                                HorizontalOptions="CenterAndExpand">
+                                                <HorizontalStackLayout>
+                                                    <Label
+                                                        FontSize="14"
+                                                        Text="Start: "
+                                                        TextColor="{DynamicResource SecondaryDarkText}"
+                                                        VerticalOptions="Center" />
+                                                    <DatePicker
+                                                        x:Name="startDatePicker"
+                                                        Date="{Binding StartDate, Mode=TwoWay}"
+                                                        FontSize="14"
+                                                        IsEnabled="False" />
+                                                </HorizontalStackLayout>
+
+                                                <HorizontalStackLayout>
+
+                                                    <Label
+                                                        FontSize="14"
+                                                        Text="End:   "
+                                                        TextColor="{DynamicResource SecondaryDarkText}"
+                                                        VerticalOptions="Center" />
+                                                    <DatePicker
+                                                        x:Name="endDatePicker"
+                                                        Date="{Binding EndDate, Mode=TwoWay}"
+                                                        FontSize="14"
+                                                        IsEnabled="False" />
+                                                </HorizontalStackLayout>
+
+
+
+                                            </VerticalStackLayout>
+
+
+
+                                        </HorizontalStackLayout>
+                                    </Frame>
+
+
+                                </SwipeView>
+
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+
+                    <ActivityIndicator
+                        HorizontalOptions="Fill"
+                        IsRunning="{Binding IsBusy}"
+                        IsVisible="{Binding IsBusy}"
+                        VerticalOptions="Center" />
+                </VerticalStackLayout>
+            </ScrollView>
+        </RefreshView>
+        <ImageButton
+            x:Name="AddTermButton"
+            Margin="30"
+            Aspect="Fill"
+            Command="{Binding AddTripCommand}"
+            HorizontalOptions="End"
+            Scale="1.5"
+            Source="add_icon2.png"
+            VerticalOptions="End">
+            <ImageButton.Shadow>
+                <Shadow
+                    Brush="Black"
+                    Opacity="0.9"
+                    Radius="40"
+                    Offset="-30,10" />
+            </ImageButton.Shadow>
+        </ImageButton>
+    </Grid>
+
+</ContentPage>

@@ -1,0 +1,55 @@
+<toolkit:Popup
+    x:Class="TripPlanner.View.Controls.AddTripPopup"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:model="clr-namespace:TripPlanner.Model"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    Size="300,300"
+    Color="Transparent">
+    <Frame BackgroundColor="{DynamicResource Primary}" CornerRadius="20">
+        <VerticalStackLayout Padding="10">
+            <Label
+                x:Name="PopupTitle"
+                Margin="0,10"
+                FontSize="30"
+                Text="Add Trip" />
+
+            <Entry
+                x:Name="EntryTitle"
+                FontSize="18"
+                Placeholder="Enter Trip Name" />
+            <HorizontalStackLayout Margin="0,5" HorizontalOptions="Center">
+                <DatePicker
+                    x:Name="StartPicker"
+                    FontSize="20"
+                    Format="MMM dd, yyyy"
+                    VerticalOptions="Center" />
+                <Label Text=" -- " VerticalOptions="Center" />
+                <DatePicker
+                    x:Name="EndPicker"
+                    FontSize="20"
+                    Format="MMM dd, yyyy"
+                    VerticalOptions="Center" />
+            </HorizontalStackLayout>
+            <HorizontalStackLayout Margin="30" Spacing="30">
+                <Button
+                    BackgroundColor="{DynamicResource PrimaryDarkText}"
+                    HeightRequest="50"
+                    Pressed="CancelButton_Pressed"
+                    Text="Cancel"
+                    TextColor="{DynamicResource SecondaryDarkText}"
+                    WidthRequest="70" />
+                <Button
+                    HeightRequest="48"
+                    Pressed="Button_Pressed"
+                    Text="Save"
+                    TextColor="White"
+                    WidthRequest="70" />
+            </HorizontalStackLayout>
+
+        </VerticalStackLayout>
+    </Frame>
+
+
+
+</toolkit:Popup>

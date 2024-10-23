@@ -1,0 +1,96 @@
+<RefreshView
+            x:Name="refreshView"
+            Command="{Binding GetClassesCommand}"
+            IsRefreshing="{Binding IsRefreshing}">
+            <ScrollView>
+                <VerticalStackLayout
+                    Padding="30,0"
+                    Spacing="25">
+                    <Label Text ="Degree Navigator" 
+                        HorizontalOptions="Center" 
+                        FontSize="Title" 
+                        FontAttributes="Bold"/>
+                    <Button x:Name="AddTermButton" 
+                        Text="Add Term" 
+                        FontSize="30" Command="{Binding AddClassCommand}" />
+                    <Line HorizontalOptions="Center" 
+                        Fill="AntiqueWhite" 
+                        BackgroundColor="AntiqueWhite" 
+                        Aspect="Fill"/>
+
+                    <CollectionView x:Name="ClassList" EmptyView="No Terms Yet!" ItemsSource="{Binding ClassList}" >
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate x:DataType="model:ClassItem">
+                                <SwipeView x:Name="swipeObj" Threshold="100"  >
+                                    <SwipeView.LeftItems>
+                                        <SwipeItems Mode="Execute" >
+                                            <SwipeItem x:Name="DeleteTerm" 
+                                            Text="Delete" BackgroundColor="Red" 
+                                            Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:TermViewModel}},Path=DeleteClassCommand}"
+                                            CommandParameter="{Binding .}" />
+                                        </SwipeItems>
+                                    </SwipeView.LeftItems>
+                                    <SwipeView.RightItems>
+                                        <SwipeItems Mode="Execute">
+                                            <SwipeItem x:Name="SaveTerm" 
+                                            Text="Save" 
+                                            BackgroundColor="PaleGreen" 
+                                             Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:TermViewModel}},Path=SaveClassCommand}"
+                                             CommandParameter="{Binding .}"/>
+                                        </SwipeItems>
+                                    </SwipeView.RightItems>
+
+                                    <VerticalStackLayout Padding="20"  
+                                              BackgroundColor="DarkSlateBlue"  
+                                              Margin=" 0,0,0,20" >
+                                        <HorizontalStackLayout HorizontalOptions="CenterAndExpand">
+                                            <Label Text="Term Name: " 
+                                        FontSize="25" 
+                                        VerticalOptions="Center" 
+                                        FontAttributes="Bold" 
+                                        TextColor="AliceBlue"/>
+                                            <Label Text="{Binding CourseName}" 
+                                        FontSize="25" 
+                                        TextColor="AntiqueWhite" 
+                                        VerticalOptions="Center"/>
+
+                                        </HorizontalStackLayout>
+
+                                        <HorizontalStackLayout x:Name ="Date Row" 
+                                                    Padding="0,0,0,10"  
+                                                    Margin="20,0,0,0" 
+                                                    HorizontalOptions="CenterAndExpand" >
+                                            <VerticalStackLayout x:Name ="Start Date" Padding="0,5,30,0"  >
+                                                <Label Text="Start Date" FontSize="20"/>
+                                                <DatePicker x:Name="startDatePicker" 
+                                                 FontSize="20" 
+                                                 Date ="{Binding StartDate, Mode=TwoWay}"
+                                                            IsEnabled="False"/>
+                                            </VerticalStackLayout>
+                                            <VerticalStackLayout x:Name ="End Date" Padding="0,5,10,0">
+                                                <Label Text="End Date" FontSize="20"/>
+                                                <DatePicker x:Name="endDatePicker" 
+                                                 FontSize="20" 
+                                                 Date ="{Binding EndDate, Mode=TwoWay}"
+                                                 IsEnabled="False"/>
+                                            </VerticalStackLayout>
+                                        </HorizontalStackLayout>
+                                        <Button x:Name="ViewTerm" 
+                                                Text="View Term"
+                                                Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:TermViewModel}}}"
+                                                CommandParameter="{Binding .}"
+                                        />
+                                    </VerticalStackLayout>
+                                </SwipeView>
+
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+
+                    <ActivityIndicator IsVisible="{Binding IsBusy}"
+                            IsRunning="{Binding IsBusy}"
+                            HorizontalOptions="Fill"
+                            VerticalOptions="Center"/>
+                </VerticalStackLayout>
+            </ScrollView>
+        </RefreshView>

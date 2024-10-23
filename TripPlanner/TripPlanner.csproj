@@ -1,0 +1,197 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFrameworks>;net8.0-android34.0</TargetFrameworks>
+		
+		<!-- Uncomment to also build the tizen app. You will need to install tizen by following this: https://github.com/Samsung/Tizen.NET -->
+		<!-- <TargetFrameworks>$(TargetFrameworks);net8.0-tizen</TargetFrameworks> -->
+
+		<!-- Note for MacCatalyst:
+		The default runtime is maccatalyst-x64, except in Release config, in which case the default is maccatalyst-x64;maccatalyst-arm64.
+		When specifying both architectures, use the plural <RuntimeIdentifiers> instead of the singular <RuntimeIdentifier>.
+		The Mac App Store will NOT accept apps with ONLY maccatalyst-arm64 indicated;
+		either BOTH runtimes must be indicated or ONLY macatalyst-x64. -->
+		<!-- For example: <RuntimeIdentifiers>maccatalyst-x64;maccatalyst-arm64</RuntimeIdentifiers> -->
+
+		<OutputType>Exe</OutputType>
+		<RootNamespace>TripPlanner</RootNamespace>
+		<UseMaui>true</UseMaui>
+		<SingleProject>true</SingleProject>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+
+		<!-- Display name -->
+		<ApplicationTitle>Trip Planner</ApplicationTitle>
+
+		<!-- App Identifier -->
+		<ApplicationId>com.companyname.tripplanner</ApplicationId>
+
+		<!-- Versions -->
+		<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
+		<ApplicationVersion>1</ApplicationVersion>
+
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">21.0</SupportedOSPlatformVersion>
+		
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net8.0-android|AnyCPU'">
+	  <AndroidPackageFormat>apk</AndroidPackageFormat>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net8.0-android34.0|AnyCPU'">
+	  <EmbedAssembliesIntoApk>True</EmbedAssembliesIntoApk>
+	  <DebugSymbols>False</DebugSymbols>
+	  <AndroidKeyStore>False</AndroidKeyStore>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net8.0-android34.0|AnyCPU'">
+	  <AndroidPackageFormat>apk</AndroidPackageFormat>
+	  <DebugSymbols>True</DebugSymbols>
+	  <AndroidKeyStore>False</AndroidKeyStore>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<!-- App Icon -->
+		<MauiIcon Include="Resources\AppIcon\navigation_icon.svg" Color="#0F0E0E" BorderColor="#FFFFFF" />
+		<MauiSplashScreen Include="Resources\AppIcon\navigation_icon.svg">
+		  <Color>#1f1f1f</Color>
+		  <BaseSize>128,128</BaseSize>
+		</MauiSplashScreen>
+
+		<!-- Splash Screen -->
+		<MauiSplashScreen Include="Resources\Splash\navigation_icon.svg" Color="#0F0E0E" BaseSize="128,128" />
+
+		<!-- Images -->
+		<MauiImage Include="Resources\Images\*" />
+		<MauiImage Include="Resources\Images\weather_icons\*" />
+		<MauiImage Update="Resources\Images\dotnet_bot.png" Resize="True" BaseSize="300,185" />
+		<!-- Custom Fonts -->
+		<MauiFont Include="Resources\Fonts\*" />
+
+		<!-- Raw Assets (also remove the "Resources\Raw" prefix) -->
+		<MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
+		<MauiAsset Include="Test\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <AndroidResource Remove="ViewModel\Old View Models\**" />
+	  <AndroidResource Remove="ViewModel\OldViewModels\**" />
+	  <AndroidResource Remove="View\old code\**" />
+	  <AndroidResource Remove="View\OldCode\**" />
+	  <Compile Remove="ViewModel\Old View Models\**" />
+	  <Compile Remove="ViewModel\OldViewModels\**" />
+	  <Compile Remove="View\old code\**" />
+	  <Compile Remove="View\OldCode\**" />
+	  <EmbeddedResource Remove="ViewModel\Old View Models\**" />
+	  <EmbeddedResource Remove="ViewModel\OldViewModels\**" />
+	  <EmbeddedResource Remove="View\old code\**" />
+	  <EmbeddedResource Remove="View\OldCode\**" />
+	  <MauiCss Remove="ViewModel\Old View Models\**" />
+	  <MauiCss Remove="ViewModel\OldViewModels\**" />
+	  <MauiCss Remove="View\old code\**" />
+	  <MauiCss Remove="View\OldCode\**" />
+	  <MauiXaml Remove="ViewModel\Old View Models\**" />
+	  <MauiXaml Remove="ViewModel\OldViewModels\**" />
+	  <MauiXaml Remove="View\old code\**" />
+	  <MauiXaml Remove="View\OldCode\**" />
+	  <None Remove="ViewModel\Old View Models\**" />
+	  <None Remove="ViewModel\OldViewModels\**" />
+	  <None Remove="View\old code\**" />
+	  <None Remove="View\OldCode\**" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Remove="Resources\AppIcon\navigation_icon.svg" />
+	  <None Remove="Resources\raw\Keys.txt" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiFont Include="Resources\Images\notifications_icon.svg" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="GoogleApi" Version="5.4.8" />
+		<PackageReference Include="Microsoft.Maui.Controls" Version="8.0.92" />
+		<PackageReference Include="CommunityToolkit.Maui" Version="9.1.0" />
+		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.3.2" />
+		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="8.0.92" />
+		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.1" />
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+		<PackageReference Include="NUnit" Version="4.2.2" />
+		<PackageReference Include="Plugin.LocalNotification" Version="11.1.4" />
+		<PackageReference Include="sqlite-net-pcl" Version="1.9.172" />
+		<PackageReference Include="SQLitePCLRaw.bundle_green" Version="2.1.10" />
+		<PackageReference Include="System.Text.Json" Version="8.0.5" />
+		<PackageReference Include="Xamarin.AndroidX.Lifecycle.Common" Version="2.8.6" />
+		<PackageReference Include="Xamarin.AndroidX.Lifecycle.LiveData.Core" Version="2.8.6" />
+		<PackageReference Include="Xamarin.AndroidX.Lifecycle.LiveData.Core.Ktx" Version="2.8.6" />
+		<PackageReference Include="Xamarin.AndroidX.Lifecycle.Runtime" Version="2.8.6" />
+		<PackageReference Include="Xamarin.AndroidX.Lifecycle.Runtime.Ktx" Version="2.8.6" />
+		<PackageReference Include="Xamarin.AndroidX.Lifecycle.ViewModel" Version="2.8.6" />
+		<PackageReference Include="Xamarin.AndroidX.Lifecycle.ViewModel.Ktx" Version="2.8.6" />
+		<PackageReference Include="Xamarin.AndroidX.Lifecycle.ViewModelSavedState" Version="2.8.6" />
+		<PackageReference Include="Xamarin.Google.Android.Play.Integrity" Version="1.4.0.1" />
+		<PackageReference Include="Xamarin.AndroidX.Collection.Jvm" Version="1.4.4" />
+		<PackageReference Include="Xamarin.AndroidX.Collection.Ktx" Version="1.4.4" />
+		<PackageReference Include="Xamarin.AndroidX.Activity" Version="1.9.2.1" />
+		<PackageReference Include="Xamarin.AndroidX.Activity.Ktx" Version="1.9.2.1" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<!-- Exclude duplicate JARs -->
+		<AndroidJavaLibrary Remove="obj\Debug\net8.0-android\lp\121\jl\classes.jar" />
+		<AndroidJavaLibrary Remove="obj\Debug\net8.0-android\lp\162\jl\classes.jar" />
+	</ItemGroup>
+	
+	<ItemGroup>
+	  <Compile Update="View\Dashboard.xaml.cs">
+	    <DependentUpon>Dashboard.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="View\EditEntryPage.xaml.cs">
+	    <DependentUpon>EditEntryPage.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="View\TripDetailsPage.xaml.cs">
+	    <DependentUpon>TripDetailsPage.xaml</DependentUpon>
+	  </Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+	 
+	  <MauiXaml Update="View\Controls\AddTripPopup.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	 
+	  <MauiXaml Update="View\Controls\DirectionsPopup.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	 
+	  <MauiXaml Update="View\Controls\NotificationPopUp.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	 
+	  <MauiXaml Update="View\Controls\SearchPopup.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	 
+	  <MauiXaml Update="View\Dashboard.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	 
+	  <MauiXaml Update="View\EditEntryPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	 
+	  <MauiXaml Update="View\TripDetailsPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <PackageReference Update="Microsoft.Maui.Controls" Version="8.0.92" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Resources\Assets\" />
+	</ItemGroup>
+
+</Project>

@@ -1,0 +1,418 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="TripPlanner.View.TripDetailsPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:TripPlanner.View.Controls"
+    xmlns:converters="clr-namespace:TripPlanner.Converters"
+    xmlns:model="clr-namespace:TripPlanner.Model"
+    xmlns:viewmodel="clr-namespace:TripPlanner.ViewModel"
+    Title="Trip Details"
+    x:DataType="viewmodel:TripViewModel">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:StringLengthToBoolConverter x:Key="StringLengthToBoolConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <Grid Padding="10,0,10,10">
+        <RefreshView
+            x:Name="refreshView"
+            Command="{Binding GetEntriesCommand}"
+            IsRefreshing="{Binding IsRefreshing}">
+            <ScrollView>
+                <VerticalStackLayout Margin="20,0,20,20">
+                    <Frame BackgroundColor="{DynamicResource Gray950}" CornerRadius="20">
+                        <VerticalStackLayout>
+                            <HorizontalStackLayout>
+                                <Label
+                                    Margin="0"
+                                    FontAutoScalingEnabled="True"
+                                    FontSize="30"
+                                    HorizontalOptions="Start"
+                                    LineBreakMode="TailTruncation"
+                                    MaxLines="2"
+                                    Text="{Binding Trip.Title, Mode=TwoWay}"
+                                    WidthRequest="220" />
+
+                                <ImageButton
+                                    Margin="10,0,0,0"
+                                    HeightRequest="30"
+                                    HorizontalOptions="End"
+                                    IsEnabled="{Binding IsNotBusy}"
+                                    Source="edit_icon.png"
+                                    VerticalOptions="Start"
+                                    WidthRequest="30">
+                                    <ImageButton.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding UpdateTripCommand}" />
+                                    </ImageButton.GestureRecognizers>
+                                </ImageButton>
+
+                            </HorizontalStackLayout>
+
+
+
+                            <HorizontalStackLayout Margin="0" HorizontalOptions="Start">
+                                <DatePicker
+                                    x:Name="startDatePicker"
+                                    Date="{Binding Trip.StartDate}"
+                                    FontSize="17"
+                                    IsEnabled="False"
+                                    TextColor="{DynamicResource SecondaryDarkText}"
+                                    VerticalOptions="Center" />
+                                <Label
+                                    FontSize="20"
+                                    Text="  -  "
+                                    VerticalOptions="Center" />
+                                <DatePicker
+                                    x:Name="endDatePicker"
+                                    Date="{Binding Trip.EndDate}"
+                                    FontSize="17"
+                                    IsEnabled="False"
+                                    TextColor="{DynamicResource SecondaryDarkText}"
+                                    VerticalOptions="Center" />
+
+                            </HorizontalStackLayout>
+                        </VerticalStackLayout>
+
+                    </Frame>
+
+                    <!-- <Line
+                        HorizontalOptions="Center"
+                        Stroke="AntiqueWhite"
+                        X1="10"
+                        X2="160"
+                        Y1="20"
+                        Y2="20" />-->
+                    <CollectionView
+                        EmptyView="No Trip Items Yet!"
+                        IsGrouped="True"
+                        ItemsSource="{Binding GroupedEntries}">
+                        <CollectionView.GroupHeaderTemplate>
+                            <DataTemplate x:DataType="model:TripEntryGroup">
+                                <VerticalStackLayout>
+                                    <HorizontalStackLayout Padding="0,10">
+                                        <Image Source="calendar_today_icon.svg" />
+                                        <DatePicker
+                                            Date="{Binding GroupDate}"
+                                            FontSize="27"
+                                            Format="MMM dd,yyy"
+                                            IsEnabled="False"
+                                            TextColor="{DynamicResource SecondaryDarkText}" />
+                                    </HorizontalStackLayout>
+                                    <HorizontalStackLayout />
+                                    <HorizontalStackLayout>
+                                        <Label
+                                            Margin="20,20,0,0"
+                                            FontSize="15"
+                                            Text="Outfit:"
+                                            VerticalOptions="Start" />
+
+                                        <Frame
+                                            Padding="10,0,0,10"
+                                            BackgroundColor="{DynamicResource OffBlack}"
+                                            BorderColor="Transparent"
+                                            CornerRadius="10"
+                                            WidthRequest="220">
+
+                                            <Grid>
+                                                <StackLayout>
+                                                    <Editor
+                                                        Margin="0,0,40,0"
+                                                        AutoSize="TextChanges"
+                                                        FontSize="13"
+                                                        MaxLength="80"
+                                                        Placeholder="- Enter Outfit Ideas (Optional)."
+                                                        Text="{Binding Outfits}" />
+                                                </StackLayout>
+
+
+
+                                                <ImageButton
+                                                    Margin="0,0,0,10"
+                                                    Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:TripViewModel}}, Path=SaveOutfitCommand}"
+                                                    CommandParameter="{Binding .}"
+                                                    HeightRequest="20"
+                                                    HorizontalOptions="End"
+                                                    Source="save_button_yellow.png"
+                                                    VerticalOptions="End" />
+                                            </Grid>
+
+                                        </Frame>
+                                    </HorizontalStackLayout>
+
+
+
+                                </VerticalStackLayout>
+
+
+                            </DataTemplate>
+                        </CollectionView.GroupHeaderTemplate>
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate x:DataType="model:TripEntry">
+                                <SwipeView x:Name="swipeObj">
+                                    <SwipeView.LeftItems>
+                                        <SwipeItems Mode="Reveal">
+                                            <SwipeItemView Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:TripViewModel}}, Path=DeleteEntryCommand}" CommandParameter="{Binding .}">
+                                                <Frame
+                                                    Margin="0"
+                                                    Padding="0"
+                                                    BackgroundColor="{DynamicResource OffBlack}"
+                                                    CornerRadius="30"
+                                                    WidthRequest="150">
+                                                    <Label
+                                                        FontAttributes="Bold"
+                                                        FontSize="20"
+                                                        HorizontalOptions="Center"
+                                                        Text="Delete"
+                                                        TextColor="Red"
+                                                        VerticalOptions="Center" />
+                                                </Frame>
+                                            </SwipeItemView>
+                                        </SwipeItems>
+                                    </SwipeView.LeftItems>
+                                    <SwipeView.RightItems>
+                                        <SwipeItems Mode="Reveal">
+                                            <SwipeItemView Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:TripViewModel}}, Path=GoToEntryDetailsCommand}" CommandParameter="{Binding .}">
+                                                <Frame
+                                                    Margin="0"
+                                                    Padding="0"
+                                                    BackgroundColor="{DynamicResource SecondaryDarkText}"
+                                                    CornerRadius="30"
+                                                    WidthRequest="150">
+                                                    <Label
+                                                        FontAttributes="Bold"
+                                                        FontSize="20"
+                                                        HorizontalOptions="Center"
+                                                        Text="View/Edit"
+                                                        TextColor="{DynamicResource OffBlack}"
+                                                        VerticalOptions="Center" />
+                                                </Frame>
+                                            </SwipeItemView>
+
+
+                                        </SwipeItems>
+                                    </SwipeView.RightItems>
+                                    <Frame
+                                        Margin="0,10,0,0"
+                                        Padding="0"
+                                        BackgroundColor="{DynamicResource PrimaryDarkText}"
+                                        CornerRadius="30">
+                                        <Frame.Shadow>
+                                            <Shadow
+                                                Brush="Black"
+                                                Opacity="0.75"
+                                                Radius="20"
+                                                Offset="-30,10" />
+                                        </Frame.Shadow>
+                                        <VerticalStackLayout
+                                            Margin="0,0,0,20"
+                                            Padding="20,20,20,0"
+                                            x:DataType="model:TripEntry">
+                                            <HorizontalStackLayout Margin="0,0,0,5">
+                                                <Label
+                                                    FontAttributes="Bold"
+                                                    FontSize="15"
+                                                    Text="{Binding Type}"
+                                                    TextColor="AliceBlue"
+                                                    VerticalOptions="Center" />
+                                            </HorizontalStackLayout>
+
+                                            <Label
+                                                FontSize="20"
+                                                Text="{Binding Title}"
+                                                TextColor="AntiqueWhite"
+                                                VerticalOptions="Center" />
+
+                                            <HorizontalStackLayout Margin="17,0,0,0" Padding="0,0,0,0" />
+
+                                            <HorizontalStackLayout Margin="5,5,0,0">
+                                                <Label
+                                                    FontSize="15"
+                                                    Text="Confirmation Number: "
+                                                    VerticalOptions="Center" />
+                                                <Label
+                                                    FontSize="13"
+                                                    Text="{Binding Reservation}"
+                                                    TextColor="AntiqueWhite"
+                                                    VerticalOptions="Center" />
+                                            </HorizontalStackLayout>
+                                            <HorizontalStackLayout Margin="5,0,0,0">
+                                                <Label
+                                                    FontSize="17"
+                                                    Text="Start: "
+                                                    VerticalOptions="Center" />
+                                                <DatePicker
+                                                    x:Name="startDatePicker"
+                                                    Date="{Binding StartDate}"
+                                                    FontSize="14"
+                                                    Format="MM/dd/yy"
+                                                    IsEnabled="False"
+                                                    TextColor="AntiqueWhite"
+                                                    VerticalOptions="Center" />
+
+                                                <TimePicker
+                                                    IsEnabled="False"
+                                                    TextColor="AntiqueWhite"
+                                                    Time="{Binding StartDate.TimeOfDay}" />
+
+                                            </HorizontalStackLayout>
+                                            <HorizontalStackLayout IsVisible="{Binding StartLocation, Converter={StaticResource StringLengthToBoolConverter}}" Spacing="15">
+                                                <Image
+                                                    x:Name="StartLocationIcon"
+                                                    Margin="20,0,0,0"
+                                                    HorizontalOptions="Start"
+                                                    MaximumWidthRequest="20"
+                                                    Source="location_icon.svg"
+                                                    VerticalOptions="Start" />
+                                                <Label
+                                                    Padding="0"
+                                                    FontSize="13"
+                                                    LineBreakMode="WordWrap"
+                                                    Text="{Binding StartLocation}"
+                                                    TextColor="AntiqueWhite"
+                                                    VerticalOptions="Start"
+                                                    WidthRequest="120" />
+
+                                                <VerticalStackLayout
+                                                    Margin="5,0,0,0"
+                                                    IsVisible="True"
+                                                    VerticalOptions="Start">
+                                                    <Image HeightRequest="30" Source="{Binding StartWeatherIcon}" />
+                                                    <HorizontalStackLayout>
+                                                        <Label
+                                                            x:Name="StartWeatherLowLabel"
+                                                            FontSize="10"
+                                                            Text="Low : " />
+                                                        <Label FontSize="10" Text="{Binding StartWeatherLow}" />
+                                                    </HorizontalStackLayout>
+                                                    <HorizontalStackLayout>
+                                                        <Label FontSize="10" Text="High : " />
+                                                        <Label FontSize="10" Text="{Binding StartWeatherHigh}" />
+                                                    </HorizontalStackLayout>
+                                                </VerticalStackLayout>
+
+                                            </HorizontalStackLayout>
+                                            <HorizontalStackLayout Margin="5,0,0,0">
+                                                <Label
+                                                    FontSize="18"
+                                                    Text="End: "
+                                                    VerticalOptions="Center" />
+                                                <DatePicker
+                                                    x:Name="endDatePicker"
+                                                    Date="{Binding EndDate}"
+                                                    FontSize="14"
+                                                    Format="MM/dd/yy"
+                                                    IsEnabled="False"
+                                                    TextColor="AntiqueWhite"
+                                                    VerticalOptions="Center" />
+                                                <TimePicker
+                                                    IsEnabled="False"
+                                                    TextColor="AntiqueWhite"
+                                                    Time="{Binding EndDate.TimeOfDay}" />
+
+                                            </HorizontalStackLayout>
+                                            <HorizontalStackLayout IsVisible="{Binding EndLocation, Converter={StaticResource StringLengthToBoolConverter}}" Spacing="15">
+                                                <Image
+                                                    Margin="20,0,0,0"
+                                                    HorizontalOptions="End"
+                                                    MaximumWidthRequest="20"
+                                                    Source="location_icon.svg"
+                                                    VerticalOptions="Start" />
+                                                <Label
+                                                    Padding="0"
+                                                    FontSize="13"
+                                                    LineBreakMode="WordWrap"
+                                                    Text="{Binding EndLocation}"
+                                                    TextColor="AntiqueWhite"
+                                                    VerticalOptions="Center"
+                                                    WidthRequest="120" />
+
+                                                <VerticalStackLayout
+                                                    Margin="5,0,0,0"
+                                                    IsVisible="True"
+                                                    VerticalOptions="Start">
+                                                    <Image
+                                                        x:Name="EndWeatherIcon"
+                                                        HeightRequest="30"
+                                                        Source="{Binding EndWeatherIcon}" />
+                                                    <HorizontalStackLayout>
+                                                        <Label FontSize="10" Text="Low : " />
+                                                        <Label
+                                                            x:Name="EndLowTemp"
+                                                            FontSize="10"
+                                                            Text="{Binding EndWeatherLow}" />
+                                                    </HorizontalStackLayout>
+                                                    <HorizontalStackLayout>
+                                                        <Label FontSize="10" Text="High : " />
+                                                        <Label
+                                                            x:Name="EndHighTemp"
+                                                            FontSize="10"
+                                                            Text="{Binding EndWeatherHigh}" />
+                                                    </HorizontalStackLayout>
+                                                </VerticalStackLayout>
+
+                                            </HorizontalStackLayout>
+
+                                            <HorizontalStackLayout Margin="0,20,0,0" HorizontalOptions="End">
+
+                                                <Label
+                                                    Padding="0,10,0,0"
+                                                    FontSize="17"
+                                                    HorizontalOptions="Center"
+                                                    Text="Get Directions"
+                                                    TextColor="MediumSpringGreen"
+                                                    TextDecorations="Underline"
+                                                    VerticalOptions="Center">
+                                                    <Label.GestureRecognizers>
+                                                        <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:TripViewModel}}, Path=GetDirectionsCommand}" CommandParameter="{Binding .}" />
+                                                    </Label.GestureRecognizers>
+                                                </Label>
+                                                <ImageButton
+                                                    Margin="0,10,0,0"
+                                                    Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:TripViewModel}}, Path=GetDirectionsCommand}"
+                                                    CommandParameter="{Binding .}"
+                                                    HeightRequest="30"
+                                                    HorizontalOptions="Start"
+                                                    Source="redirect_icon.png"
+                                                    WidthRequest="22" />
+                                            </HorizontalStackLayout>
+
+                                        </VerticalStackLayout>
+                                    </Frame>
+                                </SwipeView>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+
+
+                    <ActivityIndicator
+                        HorizontalOptions="Fill"
+                        IsRunning="{Binding IsBusy}"
+                        IsVisible="{Binding IsBusy}"
+                        VerticalOptions="Center" />
+                </VerticalStackLayout>
+
+            </ScrollView>
+
+        </RefreshView>
+        <ImageButton
+            Margin="30"
+            Aspect="Fill"
+            Command="{Binding AddEntryCommand}"
+            HorizontalOptions="End"
+            Scale="1.5"
+            Source="add_icon2.png"
+            VerticalOptions="End">
+            <ImageButton.Shadow>
+                <Shadow
+                    Brush="Black"
+                    Opacity="0.5"
+                    Radius="20"
+                    Offset="-30,10" />
+            </ImageButton.Shadow>
+        </ImageButton>
+    </Grid>
+
+
+</ContentPage>

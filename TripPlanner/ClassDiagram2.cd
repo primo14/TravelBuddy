@@ -1,0 +1,254 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
+  <Class Name="TripPlanner.Model.Attachments">
+    <Position X="7.75" Y="14.25" Width="3.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAIAAAAAAAQAAAAAAAAAAAAAAAAAAQA=</HashCode>
+      <FileName>Model\Attachments.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TripPlanner.Model.Location">
+    <Position X="30.25" Y="3" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAI=</HashCode>
+      <FileName>Model\Location.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TripPlanner.Model.Notification">
+    <Position X="7.75" Y="11.75" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAgAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\Notification.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TripPlanner.Model.Outfits">
+    <Position X="4" Y="11.5" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAgAAAAAAAAIAAAAAAAAAAAABAAAAAAAAAAA=</HashCode>
+      <FileName>Model\Outfits.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TripPlanner.Model.PlacesResponse">
+    <Position X="25.5" Y="13.75" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAA=</HashCode>
+      <FileName>Model\Prediction.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TripPlanner.Model.Prediction">
+    <Position X="25.5" Y="15" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAIAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\Prediction.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TripPlanner.Model.PlaceDetails">
+    <Position X="29.75" Y="11" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\Prediction.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TripPlanner.Model.Result">
+    <Position X="29.75" Y="12.25" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\Prediction.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TripPlanner.Model.Geometry">
+    <Position X="29.75" Y="13.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\Prediction.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TripPlanner.Model.Locations">
+    <Position X="29.75" Y="14.75" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAIAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\Prediction.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TripPlanner.Model.Trip">
+    <Position X="0.5" Y="11.5" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAEAAAAAAAAAgAAAAAAAAAAAAAEAAAAA=</HashCode>
+      <FileName>Model\Trip.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TripPlanner.Model.TripEntryGroup">
+    <Position X="20.25" Y="7.5" Width="5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAQAAAAAAAAAAA=</HashCode>
+      <FileName>Model\TripEntry.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TripPlanner.Model.TripEntry">
+    <Position X="0.5" Y="14.25" Width="6.75" />
+    <TypeIdentifier>
+      <HashCode>AAAiAQAQAAAIAEAAEIIAEAAgAAAACQEAAQEAAEAAAAE=</HashCode>
+      <FileName>Model\TripEntry.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TripPlanner.Model.Weather">
+    <Position X="29.75" Y="18" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAABBAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAA=</HashCode>
+      <FileName>Model\Weather.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TripPlanner.Model.WeatherList">
+    <Position X="29.75" Y="16.75" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAA=</HashCode>
+      <FileName>Model\WeatherList.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TripPlanner.Services.DatabaseService">
+    <Position X="12.5" Y="11.25" Width="11.5" />
+    <Members>
+      <Method Name="AddLocation" Hidden="true" />
+      <Method Name="GetLocationsAsync" Hidden="true" />
+      <Method Name="RemoveLocation" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AJAIgAAIAAAAAQAAARAAEIECkAAAADEBnhQCCAAEIAA=</HashCode>
+      <FileName>Services\DatabaseService.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TripPlanner.Services.GooglePlaceServices">
+    <Position X="25.25" Y="11.25" Width="4.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAABAAAAAAAIAAACAAAABCAAAAAAA=</HashCode>
+      <FileName>Services\GooglePlaceServices.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TripPlanner.Services.WeatherApiService">
+    <Position X="25.25" Y="16.75" Width="4" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAEAAAABAAAAAAAAAAACAAAAACAAAAAAA=</HashCode>
+      <FileName>Services\WeatherAPIService.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TripPlanner.View.Controls.AddTripPopup">
+    <Position X="0.5" Y="5.25" Width="4" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAQBAAAAgAAAAAAABgAAAEAAAAAAAAAA=</HashCode>
+      <FileName>View\Controls\AddTripPopup.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TripPlanner.View.Controls.DirectionsPopup">
+    <Position X="11.25" Y="8.25" Width="5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAgAAAAAAAAAAIAAAAAAACAAAAgAAAAAAAAAAA=</HashCode>
+      <FileName>View\Controls\DirectionsPopup.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TripPlanner.View.Controls.NotificationPopUp">
+    <Position X="12" Y="5" Width="4" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAgAAAAAAAAAAAAIAAAJAAAAAAAAAAAA=</HashCode>
+      <FileName>View\Controls\NotificationPopUp.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TripPlanner.View.Controls.ReportPopup">
+    <Position X="0.5" Y="8.25" Width="5" />
+    <TypeIdentifier>
+      <HashCode>AAAIAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAEAAA=</HashCode>
+      <FileName>View\Controls\ReportPopup.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TripPlanner.View.Controls.SearchPopup">
+    <Position X="5.75" Y="8.25" Width="5.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAIAAAAAECAAAAAAAAAAAAAAAAAAAAAABA=</HashCode>
+      <FileName>View\Controls\SearchPopup.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TripPlanner.View.Dashboard">
+    <Position X="0.5" Y="2" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAgAAAAQAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>View\Dashboard.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TripPlanner.View.EditEntryPage">
+    <Position X="9.25" Y="1.75" Width="4.75" />
+    <Members>
+      <Method Name="ChangeCursor" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAEgAAAAQAAAAAAQAAABgAAAAAAEAIAAAAAA=</HashCode>
+      <FileName>View\EditEntryPage.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TripPlanner.View.TripDetailsPage">
+    <Position X="4" Y="2" Width="4.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAgAAAAQAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>View\TripDetailsPage.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TripPlanner.ViewModel.BaseViewModel">
+    <Position X="21.5" Y="0.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAgAAAAAQAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModel\BaseViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TripPlanner.ViewModel.DashboardViewModel">
+    <Position X="17" Y="3" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAQAAABAAAAACARAQAAAAAAAAAgAAAAEQgAAAAAAIAA=</HashCode>
+      <FileName>ViewModel\DashboardViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TripPlanner.ViewModel.EntryViewModel">
+    <Position X="26" Y="2.5" Width="4" />
+    <InheritanceLine Type="TripPlanner.ViewModel.BaseViewModel" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="22.5" Y="2.377" />
+        <Point X="22.5" Y="2.677" />
+        <Point X="25.7" Y="2.677" />
+        <Point X="25.7" Y="3.24" />
+        <Point X="26" Y="3.24" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>QgAAAAAEAAAADIAIQCAgFCAAAQABQAAACAABAAEAAAA=</HashCode>
+      <FileName>ViewModel\EntryViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TripPlanner.ViewModel.TripViewModel">
+    <Position X="20.75" Y="3" Width="4.25" />
+    <InheritanceLine Type="TripPlanner.ViewModel.BaseViewModel" ManuallyRouted="true" FixedToPoint="true">
+      <Path>
+        <Point X="22.5" Y="2.377" />
+        <Point X="22.5" Y="2.677" />
+        <Point X="22.733" Y="2.677" />
+        <Point X="22.733" Y="3" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AEAAgAAAAAAAABAAQIAQAAAAAAAAABBCEAAAEAAAAAA=</HashCode>
+      <FileName>ViewModel\TripViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Microsoft.Maui.Controls.ContentPage" Collapsed="true">
+    <Position X="5.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="CommunityToolkit.Maui.Views.Popup" Collapsed="true">
+    <Position X="7.5" Y="6.25" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="TripPlanner.Test.ReportTesting">
+    <Position X="16" Y="19.25" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAIAEAAQA=</HashCode>
+      <FileName>Test\ReportTesting.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

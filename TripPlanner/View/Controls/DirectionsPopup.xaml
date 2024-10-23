@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<toolkit:Popup
+    x:Class="TripPlanner.View.Controls.DirectionsPopup"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:model="clr-namespace:TripPlanner.Model"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    Size="350,450"
+    Color="Transparent">
+    <Frame
+        Padding="10"
+        BackgroundColor="{DynamicResource Primary}"
+        CornerRadius="20">
+        <VerticalStackLayout>
+            <Label
+                Grid.Row="0"
+                Grid.Column="0"
+                Margin="10"
+                Text="Directions" />
+
+            <HorizontalStackLayout Margin="20,20,10,0">
+                <VerticalStackLayout>
+                    <Image
+                        Margin="3,0,0,0"
+                        Aspect="AspectFill"
+                        Scale="0.5"
+                        Source="origin_icon.svg" />
+
+                    <Line
+                        Stroke="{DynamicResource WhiteBrush}"
+                        X1="25"
+                        X2="25"
+                        Y1="0"
+                        Y2="100" />
+                    <Image
+                        Aspect="AspectFill"
+                        HorizontalOptions="Start"
+                        Scale="0.85"
+                        Source="location_pin_icon.svg" />
+                </VerticalStackLayout>
+
+                <VerticalStackLayout>
+
+                    <Entry
+                        x:Name="StartLocation"
+                        FontSize="13"
+                        HorizontalOptions="Start"
+                        Placeholder="Search Starting Location"
+                        TextChanged="EndLocationEntry_TextChanged"
+                        VerticalOptions="Start"
+                        WidthRequest="220" />
+                    <ScrollView>
+                        <VerticalStackLayout>
+                            <ListView
+                                x:Name="predictionListEnd"
+                                HeightRequest="100"
+                                ItemTapped="predictionListEnd_ItemTapped"
+                                VerticalOptions="StartAndExpand"
+                                VerticalScrollBarVisibility="Always"
+                                WidthRequest="220">
+                                <ListView.ItemTemplate>
+                                    <DataTemplate x:DataType="model:Prediction">
+                                        <TextCell Text="{Binding description}" TextColor="{DynamicResource White}" />
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                        </VerticalStackLayout>
+                    </ScrollView>
+                    <Label
+                        x:Name="EndLocation"
+                        Margin="0,15,0,0"
+                        FontAutoScalingEnabled="True"
+                        LineBreakMode="WordWrap"
+                        MaxLines="4"
+                        MaximumWidthRequest="200" />
+                </VerticalStackLayout>
+
+
+
+            </HorizontalStackLayout>
+            <Button
+                Margin="10,40,0,0"
+                Clicked="Button_Clicked"
+                Text="Get Directions"
+                WidthRequest="200" />
+        </VerticalStackLayout>
+
+    </Frame>
+
+</toolkit:Popup>

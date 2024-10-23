@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="TripPlanner.View.EditEntryPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:model="clr-namespace:TripPlanner.Model"
+    xmlns:viewmodel="clr-namespace:TripPlanner.ViewModel"
+    x:DataType="viewmodel:EntryViewModel">
+    <ScrollView>
+        <VerticalStackLayout Margin="30,0,30,30">
+            <Frame Padding="0" BorderColor="{DynamicResource OffBlack}">
+                <Picker
+                    Title="Select Item Type"
+                    Margin="10,0,0,0"
+                    FontSize="20"
+                    HorizontalOptions="StartAndExpand"
+                    ItemsSource="{Binding Types}"
+                    SelectedItem="{Binding Tripentry.Type, Mode=TwoWay}"
+                    TextColor="AntiqueWhite"
+                    TitleColor="AntiqueWhite"
+                    VerticalOptions="Center"
+                    WidthRequest="270" />
+            </Frame>
+
+            <Entry
+                Margin="10,0,18,0"
+                FontSize="25"
+                Placeholder="Title"
+                Text="{Binding Tripentry.Title}" />
+            <HorizontalStackLayout Margin="20,0,0,0">
+                <Label
+                    FontSize="15"
+                    Text="Starting at: "
+                    VerticalOptions="Center" />
+                <DatePicker Date="{Binding Tripentry.StartDate, Mode=TwoWay}" Format="MMMM dd, yyyy" />
+                <TimePicker Time="{Binding StartTime, Mode=TwoWay}" />
+            </HorizontalStackLayout>
+            <HorizontalStackLayout Margin="20,0,0,0">
+                <Label
+                    FontSize="15"
+                    Text="Ending at: "
+                    VerticalOptions="Center" />
+                <DatePicker Date="{Binding Tripentry.EndDate}" Format="MMMM dd, yyyy" />
+                <TimePicker Time="{Binding EndTime}" />
+            </HorizontalStackLayout>
+            <HorizontalStackLayout Margin="20,0,20,0">
+                <Label
+                    FontSize="13"
+                    Text="Reservation/Confirmation Code: "
+                    VerticalOptions="Center" />
+                <Entry
+                    Placeholder="Optional"
+                    Text="{Binding Tripentry.Reservation, Mode=TwoWay}"
+                    WidthRequest="85" />
+            </HorizontalStackLayout>
+
+            <HorizontalStackLayout Margin="20,0,0,0">
+                <Label
+                    FontSize="15"
+                    Text="Start: "
+                    VerticalOptions="Center" />
+                <Entry
+                    x:Name="StartLocationEntry"
+                    FontAutoScalingEnabled="True"
+                    FontSize="13"
+                    HorizontalOptions="Start"
+                    Placeholder="Starting Location"
+                    Text="{Binding StartLoc.Name}"
+                    TextChanged="EntryStart_TextChanged"
+                    VerticalOptions="Start"
+                    WidthRequest="225" />
+            </HorizontalStackLayout>
+            <ScrollView>
+                <VerticalStackLayout Margin="50,0,50,0">
+                    <ListView
+                        x:Name="predictionListStart"
+                        BackgroundColor="{DynamicResource SecondaryDarkText}"
+                        ItemTapped="ListViewStart_ItemTapped"
+                        MaximumHeightRequest="100"
+                        VerticalOptions="StartAndExpand"
+                        VerticalScrollBarVisibility="Default">
+                        <ListView.ItemTemplate>
+                            <DataTemplate x:DataType="model:Prediction">
+                                <TextCell Text="{Binding description}" TextColor="{DynamicResource PrimaryDarkText}" />
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </VerticalStackLayout>
+            </ScrollView>
+            <HorizontalStackLayout Margin="20,0,0,0" HorizontalOptions="StartAndExpand">
+                <Label
+                    FontSize="15"
+                    Text="End: "
+                    VerticalOptions="Start" />
+
+                <Entry
+                    x:Name="EndLocationEntry"
+                    FontSize="13"
+                    HorizontalOptions="Start"
+                    Placeholder="Ending Location (Optional)"
+                    Text="{Binding EndLoc.Name}"
+                    TextChanged="EntryEnd_TextChanged"
+                    VerticalOptions="Start"
+                    WidthRequest="220" />
+            </HorizontalStackLayout>
+            <ScrollView>
+                <VerticalStackLayout Margin="50,0,50,0">
+                    <ListView
+                        x:Name="predictionListEnd"
+                        BackgroundColor="{DynamicResource SecondaryDarkText}"
+                        ItemTapped="ListViewEnd_ItemTapped"
+                        MaximumHeightRequest="100"
+                        VerticalOptions="StartAndExpand"
+                        VerticalScrollBarVisibility="Default">
+                        <ListView.ItemTemplate>
+                            <DataTemplate x:DataType="model:Prediction">
+                                <TextCell Text="{Binding description}" TextColor="{DynamicResource PrimaryDarkText}" />
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </VerticalStackLayout>
+            </ScrollView>
+
+
+
+            <HorizontalStackLayout Margin="20,10,0,15">
+                <Label FontSize="17" Text="Attachments" />
+                <ImageButton
+                    Margin="8,0,0,0"
+                    Aspect="AspectFill"
+                    Command="{Binding AddAttachmentCommand}"
+                    HeightRequest="20"
+                    HorizontalOptions="Center"
+                    Source="add_icon.png"
+                    VerticalOptions="Center"
+                    WidthRequest="20" />
+            </HorizontalStackLayout>
+            <CollectionView EmptyView="No Attachments Yet!" ItemsSource="{Binding AttachmentList}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="model:Attachments">
+                        <HorizontalStackLayout>
+                            <Label
+                                Margin="30,0,0,15"
+                                HorizontalOptions="Start"
+                                LineBreakMode="MiddleTruncation"
+                                MaximumWidthRequest="210"
+                                Text="{Binding Name}"
+                                VerticalOptions="Center">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:EntryViewModel}}, Path=OpenAttachmentCommand}" CommandParameter="{Binding .}" />
+                                </Label.GestureRecognizers>
+                            </Label>
+                            <ImageButton
+                                Margin="8,0,0,15"
+                                Aspect="AspectFill"
+                                Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:EntryViewModel}}, Path=DeleteAttachmentCommand}"
+                                CommandParameter="{Binding .}"
+                                HeightRequest="20"
+                                HorizontalOptions="Start"
+                                Source="trash_button.png"
+                                WidthRequest="20" />
+                        </HorizontalStackLayout>
+
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+            <Label FontSize="17" Text="Notes:" />
+            <Frame Margin="20,10,10,10">
+                <Editor
+                    FontSize="13"
+                    HeightRequest="100"
+                    Placeholder="(Optional)"
+                    Text="{Binding Tripentry.Notes}" />
+            </Frame>
+
+            <HorizontalStackLayout Margin="10" HorizontalOptions="CenterAndExpand">
+                <Button
+                    Margin="0,20,10,0"
+                    BackgroundColor="{DynamicResource PrimaryDarkText}"
+                    Command="{Binding CancelEntryCommand}"
+                    FontSize="25"
+                    MinimumWidthRequest="120"
+                    Text="Cancel"
+                    TextColor="Red" />
+                <Button
+                    Margin="10,20,0,0"
+                    Command="{Binding SaveEntryCommand}"
+                    FontSize="25"
+                    MinimumWidthRequest="120"
+                    Text="Save"
+                    TextColor="{DynamicResource White}" />
+            </HorizontalStackLayout>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

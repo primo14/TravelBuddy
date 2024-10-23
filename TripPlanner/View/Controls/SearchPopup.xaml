@@ -1,0 +1,59 @@
+<toolkit:Popup
+    x:Class="TripPlanner.View.Controls.SearchPopup"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:model="clr-namespace:TripPlanner.Model"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    Size="300,300">
+    <VerticalStackLayout Padding="30" BackgroundColor="{DynamicResource Primary}">
+        <Label
+            Margin="10"
+            FontSize="20"
+            Text="Search Trips" />
+        <HorizontalStackLayout>
+            <Entry
+                x:Name="SearchTripName"
+                FontSize="13"
+                HorizontalOptions="Start"
+                Placeholder="Enter Trip Name to Search"
+                TextChanged="SearchTripName_TextChanged"
+                VerticalOptions="Start"
+                WidthRequest="220" />
+            <ImageButton
+                HeightRequest="20"
+                Pressed="ImageButton_Pressed"
+                Source="search_icon.png"
+                WidthRequest="20" />
+        </HorizontalStackLayout>
+        <Label Margin="10" Text="Search Results:" />
+        <ScrollView>
+            <VerticalStackLayout>
+                <CollectionView
+                    x:Name="SearchList"
+                    BackgroundColor="Transparent"
+                    HeightRequest="150"
+                    ItemsSource="{Binding Trips}"
+                    SelectionChanged="SearchList_SelectionChanged"
+                    SelectionMode="Single"
+                    VerticalOptions="StartAndExpand"
+                    VerticalScrollBarVisibility="Always"
+                    WidthRequest="220">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="model:Trip">
+
+                            <Label
+                                Margin="10"
+                                FontSize="15"
+                                Text="{Binding Title}"
+                                TextColor="{DynamicResource SecondaryDarkText}" />
+
+
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </VerticalStackLayout>
+        </ScrollView>
+    </VerticalStackLayout>
+
+
+</toolkit:Popup>
