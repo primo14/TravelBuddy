@@ -7,7 +7,7 @@ const container = (delay) => ({
 const Hero = () => {
   return (
     <div className="py-20 pt-48 lg:mb-40">
-      <div className="flex flex-wrap">
+      <div className="flex flex-wrap ">
         <div className="w-full lg:w-1/2">
           <div className="mt-20 flex flex-col items-center lg:items-start">
             <motion.h1
@@ -29,10 +29,12 @@ const Hero = () => {
           </div>
         </div>
         <motion.img
-         initial={{ y: 100, opacity: 0 }}
-      whileInView={{ y: 0, opacity: 1 }}
-      transition={{ duration: 1, delay: 0.5 }}
-         src={pic} className="w-1/2 h-full pt-6" />
+          initial={{ y: 100, opacity: 0 }}
+          whileInView={{ y: 0, opacity: 1 }}
+          transition={{ duration: 1, delay: 0.5 }}
+          src={pic}
+          className="w-1/2 h-full pt-6"
+        />
         <hr></hr>
       </div>
     </div>
