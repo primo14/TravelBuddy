@@ -9,20 +9,20 @@ const Navbar = () => {
       className="fixed top-0 w-full bg-gradient-to-b  from-black from-50% z-50"
     >
       <nav className="ml-5 flex items-center justify-between py-4">
-        <div className="flex flex-shrink-0 items-center">
+        <div className="sm:ml-10 xs:max-sm:ml-2 flex flex-shrink-0 items-center">
           <a href="/"><img src={ logo }/></a>
         </div>
-        <div className="m-8 mr-48 flex items-center justify-center gap-10">
-          <h3 className=" text-white">
+        <div className="m-8 mr-30 flex items-center justify-center sm:gap-10 xs:max-sm:gap-4">
+          <h3 className=" text-white xs:max-sm:text-xs">
             <a href="#Features">Features</a>
           </h3>
-          <h3 className=" text-white">
+          <h3 className=" text-white xs:max-sm:text-xs">
             <a href="#About">About</a>
           </h3>
-          <h3 className=" text-white">
+          <h3 className=" text-white xs:max-sm:text-xs">
             <a href="#Download">Download</a>
           </h3>
-          <h3 className=" text-white">
+          <h3 className=" text-white xs:max-sm:text-xs">
             <a href="https://github.com/primo14/TravelBuddy">Github</a>
           </h3>
         </div>

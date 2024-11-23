@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 const About = () => {
   return (
-    <div className=" pb-24 pt-72 mx-60">
+    <div className=" pb-24 pt-20 min-w-40 max-w-screen-sm  my-60">
       <motion.h1
         initial={{ y: -100, opacity: 0 }}
         whileInView={{ y: 0, opacity: 1 }}

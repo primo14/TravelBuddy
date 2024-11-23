@@ -14,7 +14,7 @@ const Hero = () => {
               variants={container(0.25)}
               initial="hidden"
               whileInView="visible"
-              className="pb-6 text-6xl font-thin tracking-tight lg:mt-20 lg:text-8xl lg:pl-16"
+              className="pb-6 text-6xl font-thin tracking-tight xl:mt-20 xl:text-8xl xl:pl-16"
             >
               TravelBuddy
             </motion.h1>
@@ -22,7 +22,7 @@ const Hero = () => {
               variants={container(0.5)}
               initial="hidden"
               whileInView="visible"
-              className="ml-5 mt-5 bg-gradient-to-r from-green-300 to-yellow-600 tracking-tight text-transparent  bg-clip-text text-2xl lg:pl-16"
+              className="ml-5 mt-5 lg:max-lg:mt-15 bg-gradient-to-r from-green-300 to-yellow-600 tracking-tight text-transparent  bg-clip-text text-2xl xl:pl-16"
             >
               Simplify and Declutter Your Trip Planning
             </motion.span>

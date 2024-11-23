@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 
 const Download = () => {
   return (
-    <div className=" pb-24 pt-20 mx-60 my-60 flex flex-col items-center ">
+    <div className=" pb-24 pt-20 min-w-40  my-60 flex flex-col items-center ">
       <motion.h1
         initial={{ y: -100, opacity: 0 }}
         whileInView={{ y: 0, opacity: 1 }}
