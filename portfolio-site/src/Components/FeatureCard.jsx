@@ -1,8 +1,8 @@
-import map from "../assets/map.svg"
-import weather from "../assets/weather.svg"
-import file from "../assets/file.svg"
-import location from "../assets/location.svg"
-import plan from "../assets/plan.svg"
+import map from "../app/assets/map.svg"
+import weather from "../app/assets/weather.svg"
+import file from "../app/assets/file.svg"
+import location from "../app/assets/location.svg"
+import plan from "../app/assets/plan.svg"
 import { motion } from "framer-motion"
 const iconMap = {
   map,
@@ -22,7 +22,7 @@ const FeatureCard = ({feature}) => {
     initial="hidden"
     whileInView="visible"
     className="rounded-2xl bg-stone-950 p-6 w-1/4 flex flex-col items-center">
-        <img src={iconMap[feature.icon]}/>
+        <img src={iconMap[feature.icon].src}/>
         <h1 className="text-center py-4 font-semibold">{feature.title}</h1>
         
         <p className="text-center text-stone-400 xl:h-28 lg:h-20 sm:h-64 md:h-48">{feature.description}</p>

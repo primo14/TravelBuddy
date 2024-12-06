@@ -1,4 +1,4 @@
-import pic from "../assets/cropped-mobile-pic-portfolio.png";
+import pic from "../app/assets/cropped-mobile-pic-portfolio.png";
 import { motion } from "framer-motion";
 const container = (delay) => ({
   hidden: { x: -100, opacity: 0 },
@@ -32,7 +32,7 @@ const Hero = () => {
           initial={{ y: 100, opacity: 0 }}
           whileInView={{ y: 0, opacity: 1 }}
           transition={{ duration: 1, delay: 0.5 }}
-          src={pic}
+          src={pic.src}
           className="w-1/2 h-full pt-6"
         />
         <hr></hr>

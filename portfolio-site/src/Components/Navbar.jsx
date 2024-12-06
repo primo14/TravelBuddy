@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import logo from "../assets/navigation_icon.svg"
+import logo from "../app/assets/navigation_logo.svg";
 const Navbar = () => {
   return (
     <motion.div
@@ -10,7 +10,7 @@ const Navbar = () => {
     >
       <nav className="ml-5 flex items-center justify-between py-4">
         <div className="sm:ml-10 xs:max-sm:ml-2 flex flex-shrink-0 items-center">
-          <a href="/"><img src={ logo }/></a>
+          <a href="/"><img src={ logo.src }/></a>
         </div>
         <div className="m-8 mr-30 flex items-center justify-center sm:gap-10 xs:max-sm:gap-4">
           <h3 className=" text-white xs:max-sm:text-xs">

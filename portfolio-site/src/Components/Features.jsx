@@ -1,5 +1,5 @@
 import FeatureCard from "./FeatureCard";
-import { FeatureList } from "../assets/Inputs";
+import { FeatureList } from "../app/assets/Inputs";
 import { motion } from "framer-motion";
 
 
