@@ -19,5 +19,9 @@ The TravelBuddy app's website is built using a combination of React, Next.JS, Ta
 ### Download APK
 You can download the trial version of the app using the download button provided in the application.
 
+## Updates
+
+We will be releasing a web version soon so keep an eye out!
+
 ## Contact
 For any inquiries or issues, please contact primoh1997@gmail.com.
