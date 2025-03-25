@@ -8,7 +8,7 @@ const Hero = () => {
   return (
     <div className="py-20 pt-48 lg:mb-40">
       <div className="flex flex-wrap ">
-        <div className="w-full lg:w-1/2">
+        <div className=" lg:w-1/2">
           <div className="mt-20 flex flex-col items-center lg:items-start">
             <motion.h1
               variants={container(0.25)}
@@ -33,7 +33,7 @@ const Hero = () => {
           whileInView={{ y: 0, opacity: 1 }}
           transition={{ duration: 1, delay: 0.5 }}
           src={pic.src}
-          className="w-1/2 h-full pt-6"
+          className="w-1/2 h-full pt-6 mx-auto"
         />
         <hr></hr>
       </div>

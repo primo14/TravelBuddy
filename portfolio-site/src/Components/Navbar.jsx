@@ -6,13 +6,13 @@ const Navbar = () => {
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.5, delay: 0.25 }}
-      className="fixed top-0 w-full bg-gradient-to-b  from-black from-50% z-50"
+      className="fixed top-0  bg-gradient-to-b  from-black from-50% z-50"
     >
-      <nav className="ml-5 flex items-center justify-between py-4">
+      <nav className=" ml-5 flex items-center justify-between py-4">
         <div className="sm:ml-10 xs:max-sm:ml-2 flex flex-shrink-0 items-center">
           <a href="/"><img src={ logo.src }/></a>
         </div>
-        <div className="m-8 mr-30 flex items-center justify-center sm:gap-10 xs:max-sm:gap-4">
+        <div className="m-8 mr-30 flex items-center justify-center   xs: max-md:pr-5 sm:gap-10 xs:max-sm:gap-4">
           <h3 className=" text-white xs:max-sm:text-xs">
             <a href="#Features">Features</a>
           </h3>

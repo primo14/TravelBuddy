@@ -21,11 +21,11 @@ const FeatureCard = ({feature}) => {
     variants={container((feature.id * 0.01),feature.id)}
     initial="hidden"
     whileInView="visible"
-    className="rounded-2xl bg-stone-950 p-6 w-1/4 flex flex-col items-center">
+    className="rounded-2xl bg-stone-950 p-6  max-md:w-1/2 sm:w-100  w-1/4  flex flex-col items-center">
         <img src={iconMap[feature.icon].src}/>
         <h1 className="text-center py-4 font-semibold">{feature.title}</h1>
         
-        <p className="text-center text-stone-400 xl:h-28 lg:h-20 sm:h-64 md:h-48">{feature.description}</p>
+        <p className="text-center text-stone-400 ">{feature.description}</p>
     </motion.div>
   )
 }
