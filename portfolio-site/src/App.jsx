@@ -12,10 +12,10 @@ const App = () => {
         <div className="fixed inset-0 -z-10 h-full w-full bg-white [background:radial-gradient(125%_125%_at_50%_10%,#000_40%,#783f04_100%)]"></div>
       </div>
       <Navbar />
-      <div className="container mx-auto w-full">
+      <div className="container mx-auto ">
      
-        {/*
-        <Hero />*/}
+        
+        <Hero />
           <div id="Features" className="flex flex-col items-center">
             <Features />
           </div>
