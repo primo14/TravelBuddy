@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import PropType from "prop-types";
 const About = () => {
   return (
     <div className=" pb-24 pt-20 min-w-40 max-w-screen-sm  my-60">
@@ -28,5 +29,8 @@ const About = () => {
     </div>
   );
 }
+About.PropTypes = {
+ 
+};
 
-export default About
+export default About;

@@ -1,7 +1,7 @@
 import FeatureCard from "./FeatureCard";
 import { FeatureList } from "../app/assets/Inputs";
 import { motion } from "framer-motion";
-
+import PropType from "prop-types";
 
 const Features = () => {
   return (
@@ -23,6 +23,9 @@ const Features = () => {
       </div>
     </div>
   );
+};
+Features.propTypes = {
+ 
 };
 
 export default Features;
