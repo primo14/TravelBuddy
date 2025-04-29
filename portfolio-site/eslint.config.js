@@ -32,8 +32,8 @@ export default [
       'react-refresh/only-export-components': [
         'warn',
         { allowConstantExport: true },
-       { "react/no-unescaped-entities": "off" }
       ],
+      "react/no-unescaped-entities": "off"
     },
   },
 ]
